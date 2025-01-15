@@ -9,13 +9,13 @@ import { getFirestore } from "firebase/firestore"; // Import Firestore if you ne
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: "AIzaSyBQfdW89ga1Ink9eJg7qD7H6o_JzHdwOOY",
-    authDomain: "kk-dev-portfolio.firebaseapp.com",
-    projectId: "kk-dev-portfolio",
-    storageBucket: "kk-dev-portfolio.firebasestorage.app",
-    messagingSenderId: "516586101015",
-    appId: "1:516586101015:web:62e34d7e58bba1a3a8bf52",
-    measurementId: "G-11YE2TYS8P"
+    apiKey: "AIzaSyCk6YdF57KtoZiwn95Fk-oSesRnfh1YfoM",
+    authDomain: "kk-film-portfolio.firebaseapp.com",
+    projectId: "kk-film-portfolio",
+    storageBucket: "kk-film-portfolio.firebasestorage.app",
+    messagingSenderId: "22469201117",
+    appId: "1:22469201117:web:b8cd8d45d3cdb0eaf51f34",
+    measurementId: "G-9W5C00YNMN"
 };
 
 // Initialize Firebase
@@ -25,3 +25,5 @@ const db = getFirestore(app); // Initialize Firestore
 
 
 export { db, analytics };
+
+

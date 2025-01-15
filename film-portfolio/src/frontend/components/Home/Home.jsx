@@ -1,88 +1,99 @@
 import React from "react";
+import ReactPlayer from "react-player/vimeo";
 import { Box, Typography } from "@mui/material";
-import Typewriter from "./Typewriter.jsx";
-import TiltedImage from "./TitledImage.jsx"; // Import the TiltedImage component
-import image1 from "../../../assets/Svg_2.svg"; // Path to your SVG image
-import IntroduceMyself from "./IntroduceMyself.jsx";
 
 const Home = () => {
-    const roles = ["Web Developer", "Game Developer", "Game Designer", "Programmer"];
-
     return (
         <Box
             sx={{
                 display: "flex",
                 flexDirection: "column",
-                height: "100vh", // Full height of the viewport
-                width:"100vw",
-                overflowY: "auto", // Enable vertical scrolling for the page
-                background:"transparent" // Background color for the whole page
+                alignItems: "center",
+                justifyContent: "center",
+                height: "100vh",
+                width: "100vw",
+                 color: "#fff",
+                overflowY: "auto",
+                cursor: "none",
+                background: "rgba(0, 0, 0, 0.8)", // Dark background with opacity
+                backdropFilter: "blur(10px)", // Blurred effect
+
+
             }}
         >
-            {/* Top Section */}
+            {/* Custom Cursor */}
+            <div
+                style={{
+                    position: "absolute",
+                    width: "20px",
+                    height: "20px",
+                    backgroundColor: "transparent", // Ensure it's not the red dot
+                    borderRadius: "50%",
+                    padding: "20px 20px 20px",
+                    pointerEvents: "none",
+                    marginTop:"50px",
+                }}
+                id="custom-cursor"
+            ></div>
+
+            {/* Video Container */}
             <Box
                 sx={{
                     display: "flex",
-                    flexDirection: { xs: "column", md: "row" }, // Stack vertically on small screens
-                    height: "100vh", // Ensure it takes the full viewport height
-                    flexShrink: 0, // Prevent this section from shrinking
+                    justifyContent: "center",
+                    alignItems: "center",
+                    width: "100%", // Full width to avoid alignment issues
+                    height: "100%", // Full height to ensure glow covers edges
+                    position: "relative",
+                    marginTop: "160px",
+                    animation: "fadeIn 1.5s ease-in-out", // Fade-in animation
+                    background: "rgba(0, 0, 0, 0.8)", // Background matching the overall design
                 }}
             >
-                {/* Left Section */}
                 <Box
                     sx={{
-                        flex: 1,
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "center",
-                        alignItems: "flex-start",
-                        padding: "10px 50px",
+                        position: "relative",
+                        width: "100%",
+                        aspectRatio: "16/9", // Maintain video aspect ratio
+                        boxShadow: "0 0 20px 10px rgba(0, 0, 0, 0.8)", // Subtle and balanced outer glow
+                        overflow: "hidden", // Prevent any overflow issues
+                        borderRadius: "10px", // Optional for rounded edges
                     }}
                 >
-                    <Typography
-                        variant="h3"
-                        sx={{
-                            fontWeight: "bold",
-                            color: "#D1C4E9",
-                            marginBottom: 1,
+                    <ReactPlayer
+                        url="https://vimeo.com/351640689"
+                        playing
+                        muted
+                        loop
+                        width="100%"
+                        height="100%"
+                        style={{
+                            position: "absolute",
+                            top: 0,
+                            left: 0,
+                            animation: "fadeIn 1.5s ease-in-out", // Fade-in animation
+                            pointerEvents: "none", // Disable pointer events
                         }}
-                    >
-                        Hi There! 👋 I'm Keerthi
-                    </Typography>
-                    <Typewriter texts={roles} typingSpeed={100} pauseTime={2000} />
-                </Box>
-
-                {/* Right Section with Tilted Image */}
-                <Box
-                    sx={{
-                        flex: 1,
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        scale: "2",
-                    }}
-                >
-                    <TiltedImage
-                        imageSrc={image1}
-                        altText="Developer Illustration"
+                        controls={false}
                     />
                 </Box>
             </Box>
 
-            {/* Bottom Section */}
+
+            {/* Caption and Text Section */}
             <Box
                 sx={{
-                    flexGrow: 1,
-                    padding: { xs: "40px 20px", md: "80px 100px" }, // Adjust padding for mobile
-                    backgroundColor: "rgba(64,78,100,0.7)", // Semi-transparent background
-                    backdropFilter: "blur(10px)", // Adds the blur effect
-                    borderRadius: "12px", // Optional: Adds rounded corners
-                    boxShadow: "0 4px 10px rgba(0, 0, 0, 0.3)", // Optional: Adds a subtle shadow
-
+                    width: "80%",
+                    textAlign: "center",
+                    marginTop: 4,
                 }}
             >
-                <IntroduceMyself />
-
+                <Typography variant="h6" sx={{ marginBottom: 1 }}>
+                    Caption: A Beautiful Scene
+                </Typography>
+                <Typography variant="body1" sx={{ marginBottom: 10}}>
+                    This video showcases an incredible moment captured on film. It’s a perfect example of how visuals can inspire and captivate.
+                </Typography>
             </Box>
         </Box>
     );

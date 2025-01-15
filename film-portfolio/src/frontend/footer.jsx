@@ -1,12 +1,13 @@
 import { Box, Typography, IconButton, Link } from '@mui/material';
-import { GitHub, Twitter, LinkedIn, Instagram } from '@mui/icons-material';
+import { Twitter, LinkedIn, Instagram, YouTube } from '@mui/icons-material';
 
 const Footer = () => {
     return (
         <Box
             component="footer"
             sx={{
-                backgroundColor: 'rgba(28, 28, 46, 0.8)',
+                backgroundColor: 'rgba(46,28,28,0.1)',
+
                 color: '#ffffff',
                 display: 'flex',
                 flexDirection: { xs: 'column', md: 'row' },
@@ -20,7 +21,7 @@ const Footer = () => {
                 backdropFilter: 'blur(5px)',
                 transition: 'background-color 0.3s ease', // Smooth transition for hover effect
                 '&:hover': {
-                    backgroundColor: 'rgba(8,8,73,0.1)',
+                    backgroundColor: 'rgba(46,28,28,0.8)',
                 },
             }}
         >
@@ -53,16 +54,16 @@ const Footer = () => {
                     href="https://github.com"
                     target="_blank"
                     rel="noopener"
-                    sx={{ color: '#ffffff', '&:hover': { color: '#80ceff' } }}
+                    sx={{ color: '#ffffff', '&:hover': { color: '#ff8080' } }}
                 >
-                    <GitHub />
+                    <YouTube />
                 </IconButton>
                 <IconButton
                     component={Link}
                     href="https://twitter.com"
                     target="_blank"
                     rel="noopener"
-                    sx={{ color: '#ffffff', '&:hover': { color: '#80ceff' } }}
+                    sx={{ color: '#ffffff', '&:hover': { color: '#ff8080' } }}
                 >
                     <Twitter />
                 </IconButton>
@@ -71,7 +72,7 @@ const Footer = () => {
                     href="https://linkedin.com"
                     target="_blank"
                     rel="noopener"
-                    sx={{ color: '#ffffff', '&:hover': { color: '#80ceff' } }}
+                    sx={{ color: '#ffffff', '&:hover': { color: '#ff8080' } }}
                 >
                     <LinkedIn />
                 </IconButton>
@@ -80,7 +81,7 @@ const Footer = () => {
                     href="https://instagram.com"
                     target="_blank"
                     rel="noopener"
-                    sx={{ color: '#ffffff', '&:hover': { color: '#80ceff' } }}
+                    sx={{ color: '#ffffff', '&:hover': { color: '#ff8080' } }}
                 >
                     <Instagram />
                 </IconButton>
