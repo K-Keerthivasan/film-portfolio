@@ -9,11 +9,10 @@ import MenuIcon from '@mui/icons-material/Menu';
 import HomeIcon from '@mui/icons-material/Home';
 import Person2Icon from '@mui/icons-material/Person2';
 import SummarizeIcon from '@mui/icons-material/Summarize';
-import TopicIcon from '@mui/icons-material/Topic';
-import MovieFilterIcon from '@mui/icons-material/MovieFilter';import Box from '@mui/material/Box';
+import Box from '@mui/material/Box';
 import ContactMailIcon from '@mui/icons-material/ContactMail';
 import CodeOffIcon from '@mui/icons-material/CodeOff';
-import { Link } from '@mui/material'; // For links
+import { Link } from 'react-router-dom'; // Corrected import for Link
 import OndemandVideoIcon from '@mui/icons-material/OndemandVideo';
 import ContactOverlay from './components/Contact/ContactOverlay.jsx'; // Import the ContactOverlay component
 import ResumeOverlay from './components/ResumeOverlay.jsx'; // Import ResumeOverlay
@@ -86,7 +85,7 @@ const Navbar = () => {
                             textDecoration: 'none',
                             transition: 'all 0.3s ease',
                             '&:hover': {
-                                textShadow: '0 0 10px #80ceff, 0 0 20px #80ceff',
+                                textShadow: '0 0 10px #ff8080, 0 0 20px #ff8080', // Semi-transparent white
                             },
                         }}
                     >
@@ -102,18 +101,16 @@ const Navbar = () => {
                         }}
                     >
                         {/* Desktop Menu */}
-                        <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: '20px' }}>
-                            {menuItems.map((item) =>
-                                item.action ? ( // Check if the item has an action
+                        <Box sx={{display: {xs: 'none', md: 'flex'}, gap: '20px'}}>
+                            {menuItems.map((item) => (
+                                <Link to={item.link} key={item.name} style={{textDecoration: 'none', color: 'inherit'}}>
                                     <IconButton
-                                        key={item.name}
-                                        onClick={item.action} // Call the action when clicked
                                         sx={{
                                             color: '#fff',
                                             display: 'flex',
                                             alignItems: 'center',
                                             gap: '5px',
-                                            '&:hover': { color: '#ff8080' },
+                                            '&:hover': {color: '#ff8080'},
                                         }}
                                     >
                                         {item.icon}
@@ -127,33 +124,10 @@ const Navbar = () => {
                                             {item.name}
                                         </Typography>
                                     </IconButton>
-                                ) : (
-                                    <IconButton
-                                        key={item.name}
-                                        component={Link}
-                                        href={item.link} // Use the link if no action is defined
-                                        sx={{
-                                            color: '#fff',
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            gap: '5px',
-                                            '&:hover': { color: '#ff8080' },
-                                        }}
-                                    >
-                                        {item.icon}
-                                        <Typography
-                                            sx={{
-                                                fontFamily: 'Poppins, sans-serif',
-                                                fontWeight: 'bold',
-                                                fontSize: '1rem',
-                                            }}
-                                        >
-                                            {item.name}
-                                        </Typography>
-                                    </IconButton>
-                                )
-                            )}
+                                </Link>
+                            ))}
                         </Box>
+
 
                         {/* ContactMailIcon */}
                         <IconButton
@@ -169,54 +143,55 @@ const Navbar = () => {
                                 },
                             }}
                         >
-                            <ContactMailIcon />
+                            <ContactMailIcon/>
                         </IconButton>
 
                         {/* CodeOffIcon */}
-                        <IconButton
-                            sx={{
-                                color: '#b2e1ff',
-                                transition: 'color 0.3s ease',
-                                '&:hover': {
-                                    color: '#00c4ff',
-                                    svg: {
-                                        stroke: '#00c4ff',
-                                        strokeWidth: 2,
-                                        textShadow: '0 0 10px #ff0000, 0 0 20px #ff0000',
+                        <a href="https://kk-dev-portfolio.web.app/" target="_blank" rel="noopener noreferrer"
+                           style={{textDecoration: 'none'}}>
+                            <IconButton
+                                sx={{
+                                    color: '#b2e1ff',
+                                    transition: 'color 0.3s ease',
+                                    '&:hover': {
+                                        color: '#00c4ff',
+                                        svg: {
+                                            stroke: '#00c4ff',
+                                            strokeWidth: 2,
+                                            textShadow: '0 0 10px #ff0000, 0 0 20px #ff0000',
+                                        },
                                     },
-                                },
-                                svg: {
-                                    stroke: 'none',
-                                },
-                            }}
-                        >
-                            <CodeOffIcon />
-                        </IconButton>
+                                    svg: {
+                                        stroke: 'none',
+                                    },
+                                }}
+                            >
+                                <CodeOffIcon/>
+                            </IconButton>
+                        </a>
 
 
                     </Box>
 
                     {/* Mobile Menu */}
-                    <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+                    <Box sx={{display: {xs: 'flex', md: 'none'}}}>
                         <IconButton
                             onClick={handleMenuClick}
-                            sx={{ color: '#80ceff', transition: 'color 0.3s ease' }}
+                            sx={{color: '#ff8080', transition: 'color 0.3s ease'}}
                         >
-                            <MenuIcon />
+                            <MenuIcon/>
                         </IconButton>
                         <Menu
                             anchorEl={anchorEl}
                             open={Boolean(anchorEl)}
                             onClose={handleMenuClose}
                         >
-                            {menuItems.map((item) => (
-                                <MenuItem
-                                    key={item.name}
-                                    onClick={handleMenuClose}
-                                    sx={{ display: 'flex', alignItems: 'center', gap: '10px' }}
-                                >
-                                    {item.icon}
-                                    {item.name}
+                        {menuItems.map((item) => (
+                                <MenuItem key={item.name} onClick={handleMenuClose}>
+                                    <Link to={item.link} style={{ textDecoration: 'none', color: 'inherit', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                                        {item.icon}
+                                        {item.name}
+                                    </Link>
                                 </MenuItem>
                             ))}
                         </Menu>
