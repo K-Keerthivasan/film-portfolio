@@ -2,8 +2,7 @@ import React from "react";
 import { Box, Typography } from "@mui/material";
 import image1 from "../../../assets/Icon_3.svg";
 import ExperienceSection from "./ExperienceSection.jsx";
-import SoftwareSkills from "./SoftwareSkills.jsx";
-import SkillsSection from "./SkillsSection.jsx";
+import SkillsetSection from "./SkillsetSection.jsx";
 
 const About = () => {
     return (
@@ -83,8 +82,7 @@ const About = () => {
             </Box>
 
             <ExperienceSection/>
-            <SkillsSection/>
-            <SoftwareSkills/>
+            <SkillsetSection/>
          </Box>
     );
 };

@@ -38,11 +38,8 @@ const Navbar = () => {
         setIsContactOpen((prev) => !prev);
     };
 
+    const toggleResumeOverlay = () => setIsResumeOpen((prev) => !prev);
 
-    const toggleResumeOverlay = () => {
-        console.log("Toggling Resume Overlay");
-        setIsResumeOpen(prev => !prev); // Toggle the state based on the previous state
-    };
 
 
     const menuItems = [
@@ -106,33 +103,8 @@ const Navbar = () => {
                         {/* Desktop Menu */}
                         <Box sx={{display: {xs: 'none', md: 'flex'}, gap: '20px'}}>
                             {menuItems.map((item) => (
-                                item.link ? (
-                                    <Link to={item.link} key={item.name} style={{textDecoration: 'none', color: 'inherit'}}>
-                                        <IconButton
-                                            sx={{
-                                                color: '#fff',
-                                                display: 'flex',
-                                                alignItems: 'center',
-                                                gap: '5px',
-                                                '&:hover': {color: '#ff8080'},
-                                            }}
-                                        >
-                                            {item.icon}
-                                            <Typography
-                                                sx={{
-                                                    fontFamily: 'Poppins, sans-serif',
-                                                    fontWeight: 'bold',
-                                                    fontSize: '1rem',
-                                                }}
-                                            >
-                                                {item.name}
-                                            </Typography>
-                                        </IconButton>
-                                    </Link>
-                                ) : (
+                                <Link to={item.link} key={item.name} style={{textDecoration: 'none', color: 'inherit'}}>
                                     <IconButton
-                                        onClick={item.action}
-                                        key={item.name}
                                         sx={{
                                             color: '#fff',
                                             display: 'flex',
@@ -152,9 +124,8 @@ const Navbar = () => {
                                             {item.name}
                                         </Typography>
                                     </IconButton>
-                                )
+                                </Link>
                             ))}
-
                         </Box>
 
 
@@ -203,7 +174,6 @@ const Navbar = () => {
                     </Box>
 
                     {/* Mobile Menu */}
-                    {/* Mobile Menu */}
                     <Box sx={{display: {xs: 'flex', md: 'none'}}}>
                         <IconButton
                             onClick={handleMenuClick}
@@ -216,37 +186,24 @@ const Navbar = () => {
                             open={Boolean(anchorEl)}
                             onClose={handleMenuClose}
                         >
-                            {menuItems.map((item) => (
-                                <MenuItem key={item.name} onClick={() => {
-                                    handleMenuClose(); // Always close the menu regardless of the action
-                                    if (item.action) {
-                                        item.action(); // Execute the action if present
-                                    }
-                                }}>
-                                    {item.link ? (
-                                        <Link to={item.link} style={{ textDecoration: 'none', color: 'inherit', display: 'flex', alignItems: 'center', gap: '10px' }}>
-                                            {item.icon}
-                                            {item.name}
-                                        </Link>
-                                    ) : (
-                                        <span style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                    {item.icon}
-                                            {item.name}
-                </span>
-                                    )}
+                        {menuItems.map((item) => (
+                                <MenuItem key={item.name} onClick={handleMenuClose}>
+                                    <Link to={item.link} style={{ textDecoration: 'none', color: 'inherit', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                                        {item.icon}
+                                        {item.name}
+                                    </Link>
                                 </MenuItem>
                             ))}
                         </Menu>
                     </Box>
-
                 </Toolbar>
             </AppBar>
 
             {/* ContactOverlay Component */}
             <ContactOverlay isOpen={isContactOpen} toggleOverlay={toggleContactOverlay} />
 
-
             <ResumeOverlay isOpen={isResumeOpen} toggleOverlay={toggleResumeOverlay} />
+
 
         </>
     );

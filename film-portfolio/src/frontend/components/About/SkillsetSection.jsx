@@ -28,7 +28,7 @@ const tools = [
 
 ];
 
-const SoftwareSkills = () => {
+const SkillsetSection = () => {
     return (
         <Box
             sx={{
@@ -57,7 +57,7 @@ const SoftwareSkills = () => {
                     marginBottom: 4,
                 }}
             >
-                Tools / Programs <span style={{ color: "#ffb980" }}>I use</span>
+                Tools <span style={{ color: "#ffb980" }}>I use</span>
             </Typography>
             <Grid container spacing={4} justifyContent="center">
                 {tools.map((tool, index) => (
@@ -105,4 +105,4 @@ const SoftwareSkills = () => {
     );
 };
 
-export default SoftwareSkills;
+export default SkillsetSection;
