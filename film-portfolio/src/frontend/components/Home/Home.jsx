@@ -61,10 +61,10 @@ const Home = () => {
                     }}
                 >
                     <ReactPlayer
-                        url="https://vimeo.com/351640689"
-                        playing
-                        muted
-                        loop
+                        url="https://youtu.be/zsGwJYNWGLM"
+                        playing={true} // Autoplay
+                        muted={true} // Muted (required for autoplay)
+                        loop={true} // Loop video
                         width="100%"
                         height="100%"
                         style={{
@@ -74,7 +74,20 @@ const Home = () => {
                             animation: "fadeIn 1.5s ease-in-out", // Fade-in animation
                             pointerEvents: "none", // Disable pointer events
                         }}
-                        controls={false}
+                        controls={false} // Hide controls
+                        config={{
+                            youtube: {
+                                playerVars: {
+                                    autoplay: 1, // Autoplay enabled
+                                    mute: 1, // Required for autoplay
+                                    loop: 1, // Loop enabled
+                                    playlist: "zsGwJYNWGLM", // Use the same video ID
+                                    modestbranding: 1, // Hide YouTube logo
+                                    rel: 0, // Prevent showing related videos
+                                    showinfo: 0, // Hide title info
+                                },
+                            },
+                        }}
                     />
                 </Box>
             </Box>

@@ -14,11 +14,12 @@ import NavBar from './frontend/Navbar.jsx';
 import BackgroundImage from "./assets/background.svg";
 import Footer from "./frontend/Footer.jsx";
 import LoadingScreen from "./frontend/components/LoadingScreen";
-import ProjectsSection from "./frontend/components/Projects/Project.jsx";
+import ProjectsSection from "./frontend/components/projects/FilmsSection.jsx";
 import CustomCursor from "./frontend/components/MouseCursor.jsx";
 
 import React, { useState, useEffect } from "react";
 import UnderConstruction from "./frontend/components/UnderConstruction.jsx";
+import FilmsSection from "./frontend/components/projects/FilmsSection.jsx";
 
 function App() {
     const [isLoading, setIsLoading] = useState(true);
@@ -60,7 +61,7 @@ function App() {
                         <Routes>
                             <Route path="/" element={<Home />} />
                             <Route path="/about" element={<About />} />
-                            <Route path="/projects" element={<ProjectsSection />} />
+                            <Route path="/gallery" element={<FilmsSection/>} />
                             <Route path="/unknown" element={<UnderConstruction />} />
                         </Routes>
 

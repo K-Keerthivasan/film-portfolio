@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from 'react';
 import {db} from '../../../backend/firebase-config';
 import {collection, getDocs} from 'firebase/firestore';
 import {Grid, Card, CardContent, Typography, Box} from '@mui/material';
 import ReactPlayer from 'react-player/youtube';
+import {useEffect, useState} from "react";
 
 const FilmSectionTypes = [
     {title: "My Films", collection: "films"},

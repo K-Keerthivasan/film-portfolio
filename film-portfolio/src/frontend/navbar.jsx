@@ -48,7 +48,7 @@ const Navbar = () => {
     const menuItems = [
         { name: 'Home', icon: <HomeIcon />, link: '/' },
         { name: 'About', icon: <Person2Icon />, link: '/about' },
-        { name: 'Gallery', icon: <OndemandVideoIcon />, link: '/projects' },
+        { name: 'Gallery', icon: <OndemandVideoIcon />, link: '/gallery' },
        /* { name: 'Events', icon: <MovieFilterIcon />, link: '/blogs' },*/
         { name: 'Resume', icon: <SummarizeIcon />, action: toggleResumeOverlay },
        /* { name: 'Blogs', icon: <TopicIcon />, link: '/blogs' },*/
