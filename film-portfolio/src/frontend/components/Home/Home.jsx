@@ -1,5 +1,4 @@
-import React from "react";
-import ReactPlayer from "react-player/vimeo";
+ import ReactPlayer from "react-player/vimeo";
 import { Box, Typography } from "@mui/material";
 
 const Home = () => {
@@ -61,10 +60,10 @@ const Home = () => {
                     }}
                 >
                     <ReactPlayer
-                        url="https://youtu.be/zsGwJYNWGLM"
-                        playing={true} // Autoplay
-                        muted={true} // Muted (required for autoplay)
-                        loop={true} // Loop video
+                        url="https://vimeo.com/1055439402/a2364db79e"
+                        playing
+                        muted
+                        loop
                         width="100%"
                         height="100%"
                         style={{
@@ -74,21 +73,9 @@ const Home = () => {
                             animation: "fadeIn 1.5s ease-in-out", // Fade-in animation
                             pointerEvents: "none", // Disable pointer events
                         }}
-                        controls={false} // Hide controls
-                        config={{
-                            youtube: {
-                                playerVars: {
-                                    autoplay: 1, // Autoplay enabled
-                                    mute: 1, // Required for autoplay
-                                    loop: 1, // Loop enabled
-                                    playlist: "zsGwJYNWGLM", // Use the same video ID
-                                    modestbranding: 1, // Hide YouTube logo
-                                    rel: 0, // Prevent showing related videos
-                                    showinfo: 0, // Hide title info
-                                },
-                            },
-                        }}
+                        controls={false}
                     />
+
                 </Box>
             </Box>
 
@@ -101,12 +88,12 @@ const Home = () => {
                     marginTop: 4,
                 }}
             >
-                <Typography variant="h6" sx={{ marginBottom: 1 }}>
+             {/*   <Typography variant="h6" sx={{ marginBottom: 1 }}>
                     Caption: A Beautiful Scene
                 </Typography>
                 <Typography variant="body1" sx={{ marginBottom: 10}}>
                     This video showcases an incredible moment captured on film. It’s a perfect example of how visuals can inspire and captivate.
-                </Typography>
+                </Typography>*/}
             </Box>
         </Box>
     );

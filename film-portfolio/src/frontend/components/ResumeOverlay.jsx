@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { Box, Typography, Button, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close"; // Import Close Icon
 import resumePdf from "../../assets/resume.pdf"; // Adjust the path

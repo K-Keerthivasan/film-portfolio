@@ -12,19 +12,17 @@ import SummarizeIcon from '@mui/icons-material/Summarize';
 import Box from '@mui/material/Box';
 import ContactMailIcon from '@mui/icons-material/ContactMail';
 import CodeOffIcon from '@mui/icons-material/CodeOff';
-import { Link } from 'react-router-dom'; // Corrected import for Link
+import { Link } from 'react-router-dom';
 import OndemandVideoIcon from '@mui/icons-material/OndemandVideo';
-import ContactOverlay from './components/Contact/ContactOverlay.jsx'; // Import the ContactOverlay component
-import ResumeOverlay from './components/ResumeOverlay.jsx'; // Import ResumeOverlay
-
-
+import ContactOverlay from './components/Contact/ContactOverlay.jsx';
+import ResumeOverlay from './components/ResumeOverlay.jsx';
 
 const Navbar = () => {
-    const [anchorEl, setAnchorEl] = useState(null); // For the mobile menu
-    const [isContactOpen, setIsContactOpen] = useState(false); // For contact overlay visibility
-    const [isResumeOpen, setIsResumeOpen] = useState(false); // Resume overlay
+    const [anchorEl, setAnchorEl] = useState(null); // Mobile menu state
+    const [isContactOpen, setIsContactOpen] = useState(false); // Contact overlay state
+    const [isResumeOpen, setIsResumeOpen] = useState(false); // Resume overlay state
 
-    // Mobile menu toggle handlers
+    // Mobile menu handlers
     const handleMenuClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -33,22 +31,23 @@ const Navbar = () => {
         setAnchorEl(null);
     };
 
-    // Contact overlay toggle handlers
+    // Overlay toggle handlers
     const toggleContactOverlay = () => {
         setIsContactOpen((prev) => !prev);
     };
 
-    const toggleResumeOverlay = () => setIsResumeOpen((prev) => !prev);
+    const toggleResumeOverlay = () => {
+        setIsResumeOpen((prev) => !prev);
+    };
 
-
-
+    // Menu items (Desktop & Mobile)
     const menuItems = [
         { name: 'Home', icon: <HomeIcon />, link: '/' },
         { name: 'About', icon: <Person2Icon />, link: '/about' },
         { name: 'Gallery', icon: <OndemandVideoIcon />, link: '/gallery' },
-       /* { name: 'Events', icon: <MovieFilterIcon />, link: '/blogs' },*/
         { name: 'Resume', icon: <SummarizeIcon />, action: toggleResumeOverlay },
-       /* { name: 'Blogs', icon: <TopicIcon />, link: '/blogs' },*/
+        /* { name: 'Events', icon: <MovieFilterIcon />, link: '/blogs' },*/
+        /* { name: 'Blogs', icon: <TopicIcon />, link: '/blogs' },*/
     ];
 
     return (
@@ -58,7 +57,7 @@ const Navbar = () => {
                 sx={{
                     backgroundColor: 'rgba(46,28,28,0.1)',
                     backdropFilter: 'blur(5px)',
-                    transition: 'background-color 0.3s ease', // Smooth transition for hover effect
+                    transition: 'background-color 0.3s ease',
                     '&:hover': {
                         backgroundColor: 'rgba(46,28,28,0.8)',
                     },
@@ -75,7 +74,7 @@ const Navbar = () => {
                     {/* Logo */}
                     <Typography
                         component={Link}
-                        href="/"
+                        to="/"
                         variant="h5"
                         sx={{
                             fontFamily: 'Dancing Script, cursive',
@@ -85,32 +84,28 @@ const Navbar = () => {
                             textDecoration: 'none',
                             transition: 'all 0.3s ease',
                             '&:hover': {
-                                textShadow: '0 0 10px #ff8080, 0 0 20px #ff8080', // Semi-transparent white
+                                textShadow: '0 0 10px #ff8080, 0 0 20px #ff8080',
                             },
                         }}
                     >
                         KK
                     </Typography>
 
-                    {/* Menu and Action Icons */}
-                    <Box
-                        sx={{
-                            display: 'flex',
-                            gap: '20px',
-                            alignItems: 'center',
-                        }}
-                    >
+                    {/* Menu and Actions */}
+                    <Box sx={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
                         {/* Desktop Menu */}
-                        <Box sx={{display: {xs: 'none', md: 'flex'}, gap: '20px'}}>
+                        <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: '20px' }}>
                             {menuItems.map((item) => (
-                                <Link to={item.link} key={item.name} style={{textDecoration: 'none', color: 'inherit'}}>
+                                item.action ? (
                                     <IconButton
+                                        key={item.name}
+                                        onClick={item.action}
                                         sx={{
                                             color: '#fff',
                                             display: 'flex',
                                             alignItems: 'center',
                                             gap: '5px',
-                                            '&:hover': {color: '#ff8080'},
+                                            '&:hover': { color: '#ff8080' },
                                         }}
                                     >
                                         {item.icon}
@@ -124,17 +119,40 @@ const Navbar = () => {
                                             {item.name}
                                         </Typography>
                                     </IconButton>
-                                </Link>
+                                ) : (
+                                    <Link
+                                        to={item.link}
+                                        key={item.name}
+                                        style={{ textDecoration: 'none', color: 'inherit' }}
+                                    >
+                                        <IconButton
+                                            sx={{
+                                                color: '#fff',
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                gap: '5px',
+                                                '&:hover': { color: '#ff8080' },
+                                            }}
+                                        >
+                                            {item.icon}
+                                            <Typography
+                                                sx={{
+                                                    fontFamily: 'Poppins, sans-serif',
+                                                    fontWeight: 'bold',
+                                                    fontSize: '1rem',
+                                                }}
+                                            >
+                                                {item.name}
+                                            </Typography>
+                                        </IconButton>
+                                    </Link>
+                                )
                             ))}
                         </Box>
 
-
-                        {/* ContactMailIcon */}
+                        {/* Contact Icon */}
                         <IconButton
-                            onClick={() => {
-                                console.log('Contact icon clicked');
-                                toggleContactOverlay();
-                            }}
+                            onClick={toggleContactOverlay}
                             sx={{
                                 color: '#ffffff',
                                 transition: 'color 0.3s ease',
@@ -143,55 +161,54 @@ const Navbar = () => {
                                 },
                             }}
                         >
-                            <ContactMailIcon/>
+                            <ContactMailIcon />
                         </IconButton>
 
-                        {/* CodeOffIcon */}
-                        <a href="https://kk-dev-portfolio.web.app/" target="_blank" rel="noopener noreferrer"
-                           style={{textDecoration: 'none'}}>
+                        {/* Portfolio Link */}
+                        <a
+                            href="https://kk-dev-portfolio.web.app/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{ textDecoration: 'none' }}
+                        >
                             <IconButton
                                 sx={{
                                     color: '#b2e1ff',
                                     transition: 'color 0.3s ease',
                                     '&:hover': {
                                         color: '#00c4ff',
-                                        svg: {
-                                            stroke: '#00c4ff',
-                                            strokeWidth: 2,
-                                            textShadow: '0 0 10px #ff0000, 0 0 20px #ff0000',
-                                        },
-                                    },
-                                    svg: {
-                                        stroke: 'none',
                                     },
                                 }}
                             >
-                                <CodeOffIcon/>
+                                <CodeOffIcon />
                             </IconButton>
                         </a>
-
-
                     </Box>
 
                     {/* Mobile Menu */}
-                    <Box sx={{display: {xs: 'flex', md: 'none'}}}>
+                    <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
                         <IconButton
                             onClick={handleMenuClick}
-                            sx={{color: '#ff8080', transition: 'color 0.3s ease'}}
+                            sx={{ color: '#ff8080', transition: 'color 0.3s ease' }}
                         >
-                            <MenuIcon/>
+                            <MenuIcon />
                         </IconButton>
                         <Menu
                             anchorEl={anchorEl}
                             open={Boolean(anchorEl)}
                             onClose={handleMenuClose}
                         >
-                        {menuItems.map((item) => (
-                                <MenuItem key={item.name} onClick={handleMenuClose}>
-                                    <Link to={item.link} style={{ textDecoration: 'none', color: 'inherit', display: 'flex', alignItems: 'center', gap: '10px' }}>
-                                        {item.icon}
-                                        {item.name}
-                                    </Link>
+                            {menuItems.map((item) => (
+                                <MenuItem
+                                    key={item.name}
+                                    onClick={() => {
+                                        handleMenuClose();
+                                        if (item.action) item.action();
+                                    }}
+                                    sx={{ display: 'flex', alignItems: 'center', gap: '10px' }}
+                                >
+                                    {item.icon}
+                                    {item.name}
                                 </MenuItem>
                             ))}
                         </Menu>
@@ -199,12 +216,11 @@ const Navbar = () => {
                 </Toolbar>
             </AppBar>
 
-            {/* ContactOverlay Component */}
+            {/* Contact Overlay */}
             <ContactOverlay isOpen={isContactOpen} toggleOverlay={toggleContactOverlay} />
 
+            {/* Resume Overlay */}
             <ResumeOverlay isOpen={isResumeOpen} toggleOverlay={toggleResumeOverlay} />
-
-
         </>
     );
 };
