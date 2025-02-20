@@ -1,7 +1,11 @@
  import ReactPlayer from "react-player/vimeo";
-import { Box, Typography } from "@mui/material";
+ import { Box, useMediaQuery, useTheme } from "@mui/material";
 
 const Home = () => {
+    const theme = useTheme();
+
+    const isMobile = useMediaQuery(theme.breakpoints.down("sm")); // Detect mobile devices
+
     return (
         <Box
             sx={{
@@ -16,8 +20,6 @@ const Home = () => {
                 cursor: "none",
                 background: "rgba(0, 0, 0, 0.8)", // Dark background with opacity
                 backdropFilter: "blur(10px)", // Blurred effect
-
-
             }}
         >
             {/* Custom Cursor */}
@@ -44,7 +46,7 @@ const Home = () => {
                     width: "100%", // Full width to avoid alignment issues
                     height: "100%", // Full height to ensure glow covers edges
                     position: "relative",
-                    marginTop: "160px",
+                    marginTop: isMobile ? "10px":"160px",
                     animation: "fadeIn 1.5s ease-in-out", // Fade-in animation
                     background: "rgba(0, 0, 0, 0.8)", // Background matching the overall design
                 }}
@@ -57,6 +59,8 @@ const Home = () => {
                         boxShadow: "0 0 20px 10px rgba(0, 0, 0, 0.8)", // Subtle and balanced outer glow
                         overflow: "hidden", // Prevent any overflow issues
                         borderRadius: "10px", // Optional for rounded edges
+                        transform: isMobile ? "scale(3.1)" : "scale(1)", // Slight zoom-in on mobile
+                        transition: "transform 0.3s ease-in-out", // Smooth transition
                     }}
                 >
                     <ReactPlayer

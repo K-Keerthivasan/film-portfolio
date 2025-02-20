@@ -62,7 +62,7 @@ const ContactOverlay = ({ isOpen, toggleOverlay }) => {
                 <CloseIcon />
             </IconButton>
             <Typography variant="h6" sx={{ fontFamily: 'Poppins, sans-serif' }}>
-                Contact Us
+                 Contact me!
             </Typography>
             <form onSubmit={sendEmail} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
                 <TextField

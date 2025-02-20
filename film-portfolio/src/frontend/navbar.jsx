@@ -199,17 +199,41 @@ const Navbar = () => {
                             onClose={handleMenuClose}
                         >
                             {menuItems.map((item) => (
-                                <MenuItem
-                                    key={item.name}
-                                    onClick={() => {
-                                        handleMenuClose();
-                                        if (item.action) item.action();
-                                    }}
-                                    sx={{ display: 'flex', alignItems: 'center', gap: '10px' }}
-                                >
-                                    {item.icon}
-                                    {item.name}
-                                </MenuItem>
+                                item.link ? (
+                                    <MenuItem
+                                        key={item.name}
+                                        onClick={handleMenuClose} // Ensure menu closes before navigating
+                                        sx={{ display: 'flex', alignItems: 'center', gap: '10px' }}
+                                    >
+                                        <Link
+                                            to={item.link}
+                                            style={{
+                                                textDecoration: 'none',
+                                                color: 'inherit',
+                                                width: '100%',
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                gap: '10px',
+                                                padding: '8px 16px', // Ensure full clickable area
+                                            }}
+                                        >
+                                            {item.icon}
+                                            {item.name}
+                                        </Link>
+                                    </MenuItem>
+                                ) : (
+                                    <MenuItem
+                                        key={item.name}
+                                        onClick={() => {
+                                            handleMenuClose();
+                                            if (item.action) item.action();
+                                        }}
+                                        sx={{ display: 'flex', alignItems: 'center', gap: '10px' }}
+                                    >
+                                        {item.icon}
+                                        {item.name}
+                                    </MenuItem>
+                                )
                             ))}
                         </Menu>
                     </Box>
